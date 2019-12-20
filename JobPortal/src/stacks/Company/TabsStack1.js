@@ -1,10 +1,10 @@
 import React from "react";
-import { DashboardScreen } from '../../containers/'
+import { DashboardScreen , SettingsScreen} from '../../containers/'
 import Feather from 'react-native-vector-icons/Feather';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const TabsStack1 = createBottomTabNavigator({
-    DashboardScreen: { screen: DashboardScreen,
+  DashboardScreen: { screen: DashboardScreen,
     navigationOptions : {
       tabBarLabel: 'Dashboard',
       labeled: true,
@@ -12,7 +12,16 @@ const TabsStack1 = createBottomTabNavigator({
         <Feather style={{marginTop:8}} name='home' size={25} color={tintColor}></Feather>
       )
     }
-   },
+  },
+  SettingsScreen: { screen: SettingsScreen,
+    navigationOptions : {
+      tabBarLabel: 'settings',
+      labeled: true,
+      tabBarIcon: ({ tintColor }) => (
+        <Feather style={{marginTop:8}} name='settings' size={25} color={tintColor}></Feather>
+      )
+    }
+  },
 },
   {
     initialRouteName: 'DashboardScreen',

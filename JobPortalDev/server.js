@@ -10,7 +10,7 @@ const User = require('./api/routes/user');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://jalal:jalal123@react-li-qdiya.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology:true}, ()=>{
+mongoose.connect('mongodb+srv://jalal:123@socialapp-wbe7k.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology:true}, ()=>{
     console.log('mongo db connected');
 })
 

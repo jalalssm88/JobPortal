@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeScreen } from '../../containers/'
+import { HomeScreen, SettingsScreen } from '../../containers/'
 import Feather from 'react-native-vector-icons/Feather';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
@@ -13,6 +13,15 @@ const TabsStack2 = createBottomTabNavigator({
       )
     }
    },
+   SettingsScreen: { screen: SettingsScreen,
+    navigationOptions : {
+      tabBarLabel: 'settings',
+      labeled: true,
+      tabBarIcon: ({ tintColor }) => (
+        <Feather style={{marginTop:8}} name='settings' size={25} color={tintColor}></Feather>
+      )
+    }
+  },
 },
   {
     // initialRouteName: 'HOME',

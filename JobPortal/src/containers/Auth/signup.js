@@ -4,6 +4,7 @@ import { Spinner } from 'native-base';
 import Feather from 'react-native-vector-icons/Feather';
 import styles from './Style'
 import { connect } from "react-redux";
+import { AuthActions } from '../../store/actions/';
 // import RNPickerSelect from 'react-native-picker-select';
 
 
@@ -17,8 +18,13 @@ class SignupScreen extends Component {
             role:'',
         }
     }
+
+    createUser = ()=> {
+        this.props.createUser(this.state)
+    }
   
     render() {
+        const { isLoading } = this.props
         return (
             <ScrollView style={styles.formContainer}>
                 <View style={[styles.logoContainer, {marginBottom:20, marginTop:10}]}>
@@ -50,23 +56,27 @@ class SignupScreen extends Component {
                     </Picker>  
                 </View>
                 <TouchableOpacity onPress={this.createUser} style={styles.buttons}>
-                    <Text style={{color:"white"}}>Create</Text>
+                    {
+                        isLoading?
+                        <Spinner color="red" size={25} />:
+                        <Text style={{color:"white"}}>Create</Text>
+                    }
                 </TouchableOpacity>
             </ScrollView>
         );
     }
 }
 
-// const mapStateToProps = (state) => {
-//   console.log('mapstattoprops in signup component', state)
-//   return {
+const mapStateToProps = (state) => {
+  console.log('mapstattoprops in signup component', state)
+  return {
+    isLoading:state.Auth.signupLoader,
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createUser: (payload)=> dispatch(AuthActions.createUser(payload))
+    }
+}
 
-//   }
-// }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
-export default SignupScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

@@ -12,9 +12,9 @@ const MainStack = createStackNavigator({
     TabsStack1:{screen:TabsStack1,navigationOptions:{
         header: <View><Text>compay header</Text></View>
     }},
-    // TabsStack2:{screen:TabsStack2,navigationOptions:{
-    //     header: <View><Text>student header</Text></View>
-    // }},
+    TabsStack2:{screen:TabsStack2,navigationOptions:{
+        header: <View><Text>student header</Text></View>
+    }},
 
 }, {
         // headerMode: "none",
