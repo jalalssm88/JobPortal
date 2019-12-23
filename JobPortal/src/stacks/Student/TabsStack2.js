@@ -1,10 +1,19 @@
 import React from "react";
-import { HomeScreen, SettingsScreen } from '../../containers/'
+import { HomeScreen, SettingsScreen, ProfileScreen, MyjobsScreen } from '../../containers/'
 import Feather from 'react-native-vector-icons/Feather';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const TabsStack2 = createBottomTabNavigator({
-    HomeScreen: { screen: HomeScreen,
+  ProfileScreen: { screen: ProfileScreen,
+    navigationOptions : {
+      tabBarLabel: 'Profile',
+      labeled: true,
+      tabBarIcon: ({ tintColor }) => (
+        <Feather style={{marginTop:8}} name='user' size={25} color={tintColor}></Feather>
+      )
+    }
+   },
+  HomeScreen: { screen: HomeScreen,
     navigationOptions : {
       tabBarLabel: 'Home',
       labeled: true,
@@ -13,7 +22,16 @@ const TabsStack2 = createBottomTabNavigator({
       )
     }
    },
-   SettingsScreen: { screen: SettingsScreen,
+   MyjobsScreen: { screen: MyjobsScreen,
+    navigationOptions : {
+      tabBarLabel: 'Myjobs',
+      labeled: true,
+      tabBarIcon: ({ tintColor }) => (
+        <Feather style={{marginTop:8}} name='bookmark' size={25} color={tintColor}></Feather>
+      )
+    }
+   },
+  SettingsScreen: { screen: SettingsScreen,
     navigationOptions : {
       tabBarLabel: 'settings',
       labeled: true,
@@ -24,7 +42,7 @@ const TabsStack2 = createBottomTabNavigator({
   },
 },
   {
-    // initialRouteName: 'HOME',
+    initialRouteName: 'HomeScreen',
     tabBarOptions: {
       activeTintColor: '#fff',
       inactiveTintColor:'#5D14B1',
@@ -35,7 +53,7 @@ const TabsStack2 = createBottomTabNavigator({
         fontFamily:'Montserrat-SemiBold'
       },
       style: {
-        backgroundColor: '#8721FD',
+        backgroundColor: '#2B65EC',
         borderTopRightRadius:15,
         borderTopLeftRadius:15
       },

@@ -3,7 +3,9 @@ import HttpService from "../../commons/agent";
 import { put, call, select } from "redux-saga/effects";
 import { NavigationActions, StackActions } from 'react-navigation'
 import NavigationServices from "../../services/NavigationServices";
-import {AsyncStorage} from 'react-native'
+import {AsyncStorage} from 'react-native';
+import {showToast} from '../../config/utills';
+export const getUser = (state) => state.Auth.createUser
 
 export function* createUser(action){
     let { payload } = action;
@@ -13,9 +15,10 @@ export function* createUser(action){
  
     if (response) {
         yield put({ type: AuthActions.CREATE_USER_SUCCESS, payload:response.data })
+        showToast("user successfully created")
         NavigationServices.navigate("LoginScreen")
     }else if(response == undefined){
-        // showToast("Somthing went wrong")
+        showToast("Somthing went wrong")
         yield put({ type: AuthActions.CREATE_USER_FAIL})
 
     }
@@ -42,11 +45,11 @@ export function* loginUser(action) {
         }
 
     }else if(response == undefined){
-        // showToast("Something went Wrong")
-        yield put({ type: AuthActions.LOGIN_USER_DATA_FAIL})
+        showToast("Something went Wrong")
+        yield put({ type: AuthActions.LOGIN_USER_FAIL})
     }else if(response && response.status == 401){
         yield put({ type: AuthActions.LOGIN_USER_FAIL})
-        // showToast(response.data.message)
+        showToast(response.data.message)
     }
    
 }

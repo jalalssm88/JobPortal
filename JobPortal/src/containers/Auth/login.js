@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity, AsyncStorage} from 'react-native';
+import {View, Text, Image, TextInput, TouchableOpacity, AsyncStorage, Dimensions} from 'react-native';
 import { Spinner } from 'native-base';
-import Feather from 'react-native-vector-icons/Feather';
-import styles from './Style'
+import styles from './Style';
 import { AuthActions } from '../../store/actions';
 import { connect } from "react-redux";
-import NavigationServices from '../../services/NavigationServices'
+import NavigationServices from '../../services/NavigationServices';
+import {JPButton} from '../../components/';
+const { height, width } = Dimensions.get("window");
+import { showToast } from '../../config/utills';
 
 // import { connect } from "react-redux";
 // import NavigationServices from "../../services/NavigationServices";
@@ -46,41 +48,53 @@ class LoginScreen extends React.Component {
 
 
     loginUser =() => {
-        this.props.loginUser({email:this.state.email, password:this.state.password})
+        let { email, password } = this.state;
+        if (email && password) {
+            let reg = /^\w+([\.-]?\w+)*@{1}\w+([\.-]?\w+)*(\.[a-zA-Z]{2,3})+$/;
+            if (reg.test(email)) {
+                let dataToSend = {email:email, password:password}
+                this.props.loginUser(dataToSend)
+            }
+            else {
+                showToast("Email is invalid")
+            }
+        }
+        else {
+            showToast("All fields are required")
+        }
     }
 
     gotoSignup = () =>{
         this.props.navigation.navigate('SignupScreen')
     }
     render() {
-        const { isLoading } = this.props
+        const { isLoading } = this.props;
+        const { loader } = this.state;
         return (
             <View style={styles.formContainer}>
-                <View style={[styles.logoContainer, {marginBottom:20, marginTop:10}]}>
-                    <Image source={(require('../../images/Icons/Job_portal_logo.png'))} style={{width:150, height:80}}/>
-                </View>
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Email"
-                    onChangeText={(email) => this.setState({email})}
-                    value={this.state.email}
-                />
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Password"
-                    onChangeText={(password) => this.setState({password})}
-                    value={this.state.password}
-                />
-                <TouchableOpacity onPress={this.loginUser} style={styles.buttons}>
-                    {
-                        isLoading?<Spinner color="white" size={30}/>:
-                        <Text style={{color:"white"}}>Login</Text>
-                    }
-                </TouchableOpacity>
-                    <Text style={{marginTop:50, marginBottom:10}}>Dont have account? </Text>
-                <TouchableOpacity onPress={this.gotoSignup} style={styles.buttons}>
-                    <Text style={{color:"white"}}>Create new</Text>
-                </TouchableOpacity>
+                {
+                    loader?<View style={{width:"100%", height:height, paddingTop:300}}><Spinner color="#2B65EC" size={25} /></View>:
+                    <View>
+                        <View style={[styles.logoContainer, {marginBottom:20, marginTop:10}]}>
+                            <Image source={(require('../../images/Icons/Job_portal_logo.png'))} style={{width:150, height:80}}/>
+                        </View>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Email"
+                            onChangeText={(email) => this.setState({email})}
+                            value={this.state.email}
+                        />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Password"
+                            onChangeText={(password) => this.setState({password})}
+                            value={this.state.password}
+                        />
+                        <JPButton onPress={this.loginUser} extraButtonStyles={{borderColor:"#2B65EC"}} extraTextStyles={{color:"#fff"}} isLoading={isLoading} buttonText="Login"/>
+                        <Text style={{marginTop:50, marginBottom:10}}>Dont have account? </Text>
+                        <JPButton onPress={this.gotoSignup} extraButtonStyles={{borderColor:"#2B65EC"}} extraTextStyles={{color:"#fff"}} buttonText="Create new"/>
+                    </View>
+                }
             </View>
         );
     }

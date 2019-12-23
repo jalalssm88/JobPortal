@@ -9,7 +9,7 @@ const TabsStack1 = createBottomTabNavigator({
       tabBarLabel: 'Dashboard',
       labeled: true,
       tabBarIcon: ({ tintColor }) => (
-        <Feather style={{marginTop:8}} name='home' size={25} color={tintColor}></Feather>
+        <Feather style={{marginTop:8}} name='grid' size={25} color={tintColor}></Feather>
       )
     }
   },
@@ -35,7 +35,7 @@ const TabsStack1 = createBottomTabNavigator({
         fontFamily:'Montserrat-SemiBold'
       },
       style: {
-        backgroundColor: '#8721FD',
+        backgroundColor: '#2B65EC',
         borderTopRightRadius:15,
         borderTopLeftRadius:15
       },

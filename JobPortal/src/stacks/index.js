@@ -5,15 +5,17 @@ import { View, Text } from 'react-native';
 import AuthStack from './Auth/AuthStack';
 import TabsStack1 from './Company/TabsStack1';
 import TabsStack2 from './Student/TabsStack2';
+import { JPHeader } from '../components/'
+
 
 //Main Stack
 const MainStack = createStackNavigator({
     ...AuthStack,
     TabsStack1:{screen:TabsStack1,navigationOptions:{
-        header: <View><Text>compay header</Text></View>
+        header: <JPHeader />
     }},
     TabsStack2:{screen:TabsStack2,navigationOptions:{
-        header: <View><Text>student header</Text></View>
+        header: <JPHeader />
     }},
 
 }, {

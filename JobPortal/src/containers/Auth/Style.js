@@ -40,7 +40,7 @@ export default StyleSheet.create({
     textInput:{
         height:50,
         borderWidth:1,
-        borderColor:'#2fc2ba',
+        borderColor:'#2B65EC',
         borderRadius:8,
         paddingLeft:8,
         fontSize:18,
