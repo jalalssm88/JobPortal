@@ -56,14 +56,28 @@ class ProfileScreen extends Component {
                     institude:"AL karim School",
                     degree_type:"Matriculation",
                     degree_title:"General Science",
+                }
+            ],
+            skills:[
+                {
+                    id:1,
+                    skill_title:"react-redux",
+                    skill_experience:"one year"
+                },
+                {
+                    id:2,
+                    skill_title:"semantic ui",
+                    skill_experience:"one year"
                 },
                 {
                     id:3,
-                    institude:"AL karim School",
-                    degree_type:"Matriculation",
-                    degree_title:"General Science",
-                },
-                
+                    skill_title:"photoshop",
+                    skill_experience:"one year"
+                }, {
+                    id:4,
+                    skill_title:"react js",
+                    skill_experience:"one year"
+                }
             ]
         }
     }
@@ -130,7 +144,7 @@ class ProfileScreen extends Component {
                     {/* education */}
                     <View style={[styles.summaryContainer,{marginTop:10}]}>
                         <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
-                            <Feather color="#73736f" style={{marginLeft:10}} name="file-text" size={25} />
+                            <Feather color="#73736f" style={{marginLeft:10}} name="layers" size={25} />
                             <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Education</Text>
                         </View>
                         <FlatList 
@@ -141,16 +155,62 @@ class ProfileScreen extends Component {
                                         {
                                             item.logo?
                                             <Image style={{height:50, width:50}} source={{uri:item.logo}} />:
-                                            <Image style={{height:50, width:50}} source={require('../../../images/Icons/company_icon.png')} />
+                                            <Image style={{height:40, width:40}} source={require('../../../images/Icons/education_icon.png')} />
                                         }
                                     </View>
-                                    <View style={styles.infoContainer}>
+                                    <View style={[styles.infoContainer, {paddingTop:5}]}>
                                         <Text style={{fontSize:16, fontWeight:'bold'}}>{item.institude}</Text>
                                         <View style={{flexDirection:'row'}}>
                                             <Text>{item.degree_type}</Text>
                                             <Text> in</Text>
                                             <Text style={{marginLeft:5}}>{item.degree_title}</Text>
                                         </View>
+                                    </View>
+                                </View>
+                            )}
+                            keyExtractor={item => item.id}
+                        />
+                    </View>
+
+                    {/* skills */}
+                    <View style={[styles.summaryContainer,{marginTop:10}]}>
+                        <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
+                            <Feather color="#73736f" style={{marginLeft:10}} name="file-plus" size={25} />
+                            <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Skills</Text>
+                        </View>
+                        <View style={{width:"100%", paddingHorizontal:20, paddingTop:10}}>
+                        <FlatList 
+                            data={this.state.skills}
+                            renderItem = {({item})=>(
+                                // <View style={{flexDirection:'row', marginTop:"10", width:"33.3%", backgroundColor:'#83b8fc', height:30, marginLeft:5, alignItems:'center', justifyContent:'center'}}>
+                                //     <Text>{item.skill_title}</Text>
+                                // </View>
+                                <View style={{flexDirection:'row', width:"32%", backgroundColor:'#83b8fc', marginLeft:4, marginTop:10, height:40, alignItems:'center', justifyContent:'center', borderRadius:5}}>
+                                    <Text>{item.skill_title}</Text>
+                                </View>
+                            )}
+                            numColumns={3}
+
+                            keyExtractor={item => item.id}
+                        />
+                        </View>
+                    </View>
+
+                     {/* languages */}
+                    <View style={[styles.summaryContainer,{marginTop:10}]}>
+                        <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
+                            <Feather color="#73736f" style={{marginLeft:10}} name="file-plus" size={25} />
+                            <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Languages</Text>
+                        </View>
+                        <FlatList 
+                            data={this.state.skills}
+                            renderItem = {({item})=>(
+                                <View style={[styles.flatListRender, {height:45}]}>
+                                    <View style={{width:"50%"}}>
+                                        <Text>{item.skill_title}</Text>
+                                    </View>
+                                    <View style={{width:"50%", alignItems:"flex-end"}}>
+                                        <Text>expert</Text>
                                     </View>
                                 </View>
                             )}

@@ -26,7 +26,7 @@ export default StyleSheet.create({
         width:"100%",
         backgroundColor:'#e3e3e3',
         paddingHorizontal:20,
-        height:height
+        // height:height
     },
     summaryContainer:{
         width:"100%",
@@ -36,7 +36,7 @@ export default StyleSheet.create({
 
     flatListRender:{
         width:"100%",
-        height:100,
+        height:80,
         flexDirection:'row',
         borderBottomWidth:1,
         borderColor:'#e3e3e3',
