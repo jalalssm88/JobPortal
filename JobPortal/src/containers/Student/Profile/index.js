@@ -10,24 +10,24 @@ class ProfileScreen extends Component {
         this.state = {
             image:"https://www.biography.com/.image/t_share/MTU1MTM0NzA2NzQ3MTg4NDQw/chris-evans-arrives-at-the-los-angeles-premiere-of-captain-america-the-winter-soldier-held-at-the-el-capitan-theatre-on-march-13-2014-in-hollywood-california-photo-by-michael-tran_filmmagicjpg-square.jpg",
             exprience:[
-                {
-                    id:1,
-                    job_title:"Frontend Developer",
-                    company:"Bitswits",
-                    start_date:"August 2018",
-                    end_date:"september 2019",
-                    // logo:"https://i.pinimg.com/280x280_RS/9e/2f/e1/9e2fe16835190b5a0420c2de94b0ff70.jpg",
-                    is_working:false,
-                },
-                {
-                    id:1,
-                    job_title:"React Developer",
-                    company:"Code Avenue",
-                    start_date:"August 2018",
-                    end_date:"",
-                    logo:"https://i.pinimg.com/280x280_RS/9e/2f/e1/9e2fe16835190b5a0420c2de94b0ff70.jpg",
-                    is_working:true,
-                },
+                // {
+                //     id:1,
+                //     job_title:"Frontend Developer",
+                //     company:"Bitswits",
+                //     start_date:"August 2018",
+                //     end_date:"september 2019",
+                //     // logo:"https://i.pinimg.com/280x280_RS/9e/2f/e1/9e2fe16835190b5a0420c2de94b0ff70.jpg",
+                //     is_working:false,
+                // },
+                // {
+                //     id:1,
+                //     job_title:"React Developer",
+                //     company:"Code Avenue",
+                //     start_date:"August 2018",
+                //     end_date:"",
+                //     logo:"https://i.pinimg.com/280x280_RS/9e/2f/e1/9e2fe16835190b5a0420c2de94b0ff70.jpg",
+                //     is_working:true,
+                // },
                 {
                     id:1,
                     job_title:"React Developer",
@@ -93,7 +93,7 @@ class ProfileScreen extends Component {
                     </View>
                 </View>
                 <View style={styles.profileInfoContainer}>
-                    <View style={styles.summaryContainer}>
+                    <View style={[styles.summaryContainer, {marginTop:-20}]}>
                         <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
                             <Feather color="#73736f" style={{marginLeft:10}} name="file-text" size={25} />
                             <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Summary</Text>
@@ -108,11 +108,27 @@ class ProfileScreen extends Component {
                     {/* exprience */}
                     <View style={[styles.summaryContainer,{marginTop:10}]}>
                         <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
-                            <Feather color="#73736f" style={{marginLeft:10}} name="file-text" size={25} />
-                            <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Experience</Text>
+                            <View style={{width:'90%', flexDirection:'row'}}>
+                                <Feather color="#73736f" style={{marginLeft:10}} name="file-text" size={25} />
+                                <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Experience</Text>
+                            </View>
+                            <View style={{width:"10%"}}>
+                                <TouchableOpacity onPress={()=>{
+                                    this.props.navigation.navigate('AddProfileScreen', 'Add Experience')
+                                }}>
+                                    <Feather name="plus" size={25} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <FlatList 
                             data={this.state.exprience}
+                            ListEmptyComponent={() => {
+                                return (
+                                    <View style={styles.listEmptyContainer}>
+                                        <Text>no data found</Text>
+                                    </View>
+                                )
+                            }}
                             renderItem = {({item})=>(
                                 <View style={styles.flatListRender}>
                                     <View style={styles.logoContainer}>
@@ -144,11 +160,25 @@ class ProfileScreen extends Component {
                     {/* education */}
                     <View style={[styles.summaryContainer,{marginTop:10}]}>
                         <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
-                            <Feather color="#73736f" style={{marginLeft:10}} name="layers" size={25} />
-                            <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Education</Text>
+                            <View style={{flexDirection:'row', width:"90%"}}>
+                                <Feather color="#73736f" style={{marginLeft:10}} name="layers" size={25} />
+                                <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Education</Text>
+                            </View>
+                            <View style={{width:"10%"}}>
+                                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('AddProfileScreen', 'Add Education')}}>
+                                    <Feather name="plus" size={25} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <FlatList 
                             data={this.state.education}
+                            ListEmptyComponent={() => {
+                                return (
+                                    <View style={styles.listEmptyContainer}>
+                                        <Text>no data found</Text>
+                                    </View>
+                                )
+                            }}
                             renderItem = {({item})=>(
                                 <View style={styles.flatListRender}>
                                     <View style={styles.logoContainer}>
@@ -175,12 +205,26 @@ class ProfileScreen extends Component {
                     {/* skills */}
                     <View style={[styles.summaryContainer,{marginTop:10}]}>
                         <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
-                            <Feather color="#73736f" style={{marginLeft:10}} name="file-plus" size={25} />
-                            <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Skills</Text>
+                            <View style={{flexDirection:'row', width:"90%"}}>
+                                <Feather color="#73736f" style={{marginLeft:10}} name="file-plus" size={25} />
+                                <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Skills</Text>
+                            </View>
+                            <View style={{width:"10%"}}>
+                                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('AddProfileScreen', 'Add Skills')}}>
+                                    <Feather name="plus" size={25} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <View style={{width:"100%", paddingHorizontal:20, paddingTop:10}}>
                         <FlatList 
                             data={this.state.skills}
+                            ListEmptyComponent={() => {
+                                return (
+                                    <View style={styles.listEmptyContainer}>
+                                        <Text>no data found</Text>
+                                    </View>
+                                )
+                            }}
                             renderItem = {({item})=>(
                                 // <View style={{flexDirection:'row', marginTop:"10", width:"33.3%", backgroundColor:'#83b8fc', height:30, marginLeft:5, alignItems:'center', justifyContent:'center'}}>
                                 //     <Text>{item.skill_title}</Text>
@@ -199,11 +243,25 @@ class ProfileScreen extends Component {
                      {/* languages */}
                     <View style={[styles.summaryContainer,{marginTop:10}]}>
                         <View style={{borderBottomWidth:1, borderColor:'#e3e3e3', alignItems:'center', height:50, flexDirection:'row'}}>
-                            <Feather color="#73736f" style={{marginLeft:10}} name="file-plus" size={25} />
-                            <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Languages</Text>
+                            <View style={{flexDirection:'row', width:"90%"}}>
+                                <Feather color="#73736f" style={{marginLeft:10}} name="file-plus" size={25} />
+                                <Text style={{marginLeft:10, fontSize:18, color:"#73736f"}}>Languages</Text>
+                            </View>
+                            <View>
+                                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('AddProfileScreen', 'Add Language')}}>
+                                    <Feather name="plus" size={25} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <FlatList 
                             data={this.state.skills}
+                            ListEmptyComponent={() => {
+                                return (
+                                    <View style={styles.listEmptyContainer}>
+                                        <Text>no data found</Text>
+                                    </View>
+                                )
+                            }}
                             renderItem = {({item})=>(
                                 <View style={[styles.flatListRender, {height:45}]}>
                                     <View style={{width:"50%"}}>

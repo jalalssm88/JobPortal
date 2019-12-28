@@ -7,7 +7,7 @@ export default StyleSheet.create({
     },
     profileContainer:{
         width:"100%",
-        height:250,
+        height:230,
         backgroundColor:'green',
         alignItems:'center',
     },
@@ -60,5 +60,11 @@ export default StyleSheet.create({
         height:50,
         paddingHorizontal:10
 
+    },
+    listEmptyContainer:{
+        width:"100%",
+        paddingHorizontal:20,
+        paddingTop:10
     }
+
 })

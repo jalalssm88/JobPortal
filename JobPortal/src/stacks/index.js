@@ -6,6 +6,7 @@ import AuthStack from './Auth/AuthStack';
 import TabsStack1 from './Company/TabsStack1';
 import TabsStack2 from './Student/TabsStack2';
 import { JPHeader } from '../components/'
+import ProfileStack from './Student/ProfileStack'
 
 
 //Main Stack
@@ -17,6 +18,8 @@ const MainStack = createStackNavigator({
     TabsStack2:{screen:TabsStack2,navigationOptions:{
         header: <JPHeader />
     }},
+    ...ProfileStack,
+
 
 }, {
         // headerMode: "none",
