@@ -69,6 +69,7 @@ class LoginScreen extends React.Component {
     }
     render() {
         const { isLoading } = this.props;
+        console.log('isloading', isLoading)
         const { loader } = this.state;
         return (
             <View style={styles.formContainer}>

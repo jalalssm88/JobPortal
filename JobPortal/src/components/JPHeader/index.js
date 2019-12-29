@@ -9,7 +9,7 @@ export const JPHeader = ({ leftItem = <View />, rightItem = <View />, bodyText, 
         <View style={{ width: "50%", alignItems: "center", justifyContent: "center" }} >
             {bodyText}
         </View>
-        <View style={{ width: "30%", height: "100%" }} >
+        <View style={{ width: "20%", height: "100%" }} >
             {rightItem}
         </View>
     </Header>

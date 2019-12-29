@@ -61,7 +61,6 @@ class HomeScreen extends Component {
                     )}
                     keyExtractor={item => item.id}
                 />
-                
             </View>
         );
     }

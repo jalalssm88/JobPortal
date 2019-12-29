@@ -3,20 +3,34 @@ const { height, width } = Dimensions.get("window");
 
 export default StyleSheet.create({
     formContainer: {
-        height:800, 
+        height:height,
         width:'100%', 
         paddingHorizontal:20,
         paddingTop:15,
-        borderRadius:10,
     },
     textInput:{
-        height:50,
-        borderWidth:1,
+        height:40,
+        borderBottomWidth:1,
         borderColor:'#2B65EC',
         paddingLeft:8,
-        paddingTop:5,
-        fontSize:18,
-        marginBottom:30,
-        borderRadius:10
+        fontSize:16,
+        marginBottom:20,
+        width:"100%"
+    },
+    toggleButtonContainer:{
+        width: 50,
+        height: 22,
+        borderRadius: 25,
+        backgroundColor: '#ccc',
+        padding: 5,
+        // borderColor:'blue',
+        // borderWidth:1,
+    
+    },
+    toggleButtonCircle:{
+        width: 15,
+        height: 15,
+        borderRadius: 19,
+        backgroundColor: 'white', // rgb(102,134,205)
     },
 })

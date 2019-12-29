@@ -24,15 +24,15 @@ function Reducer (state = INITIAL_STATE, action){
             }
 
         // login cases
-        case AuthActions.LOGIN_USER_DATA:
+        case AuthActions.LOGIN_USER:
             return{
                 ...state, loginLoader:true
             }
-        case AuthActions.LOGIN_USER_DATA_SUCESS:
+        case AuthActions.LOGIN_USER_SUCESS:
             return { 
                 ...state, loginLoader:false
             };
-        case AuthActions.LOGIN_USER_DATA_FAIL:
+        case AuthActions.LOGIN_USER_FAIL:
             return{
                 ...state, loginLoader:false
             }

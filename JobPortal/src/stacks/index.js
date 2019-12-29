@@ -16,7 +16,7 @@ const MainStack = createStackNavigator({
         header: <JPHeader />
     }},
     TabsStack2:{screen:TabsStack2,navigationOptions:{
-        header: <JPHeader />
+        header: <JPHeader bodyText={<View><Text style={{color:'white', fontWeight:'bold', fontSize:18}}>Jop Portal App</Text></View>} />
     }},
     ...ProfileStack,
 
