@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const User = require('./api/routes/user');
+const User = require('./api/routes/users/user');
+const Experience = require('./api/routes/ProfileRoute/userExperience');
+const Education = require('./api/routes/ProfileRoute/userEducation');
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +25,9 @@ mongoose.connect('mongodb+srv://jalal:123@socialapp-wbe7k.mongodb.net/test?retry
 
 // Use Routes
 app.use('/user', User);
+app.use('/experience', Experience);
+app.use('/education', Education);
+
 
 
 app.use((req, res, next)=> {

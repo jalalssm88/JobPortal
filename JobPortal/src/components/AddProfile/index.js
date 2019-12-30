@@ -63,7 +63,7 @@ class AddProfileScreen extends Component {
                             <TextInput
                                 style={styles.textInput}
                                 placeholder="Company"
-                                onChangeText={(title) => this.setState({company})}
+                                onChangeText={(company) => this.setState({company})}
                                 value={this.state.company}
                             />
                         </View>
