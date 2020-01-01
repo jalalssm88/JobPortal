@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, Image, TextInput } from 'react-native';
 import styles from './Style';
 import Feather from 'react-native-vector-icons/Feather';
+import {connect} from 'react-redux';
+import { Spinner } from 'native-base';
+import { HomeAction } from '../../../store/actions';
 
 
 class HomeScreen extends Component {
@@ -38,6 +41,7 @@ class HomeScreen extends Component {
             city:'',
             country:''
         }
+        this.getAllJobs();
     }
 
     focusNextField = (nextInput) => {
@@ -46,89 +50,60 @@ class HomeScreen extends Component {
     InputFocus = (focusField) => {
         return focusField
     }
-
+    getAllJobs = ()=>{
+        this.props.getAllJobs()
+    }
 
     render(){
+        const {isLoading, all_posted_jobs } = this.props
         return(
             <View>
-                <FlatList 
-                    data={this.state.jobs}
-                    renderItem = {({item})=>(
-                        <View style={styles.jobListContainer}>
-                            <View style={styles.logoContainer}>
-                                {
-                                    item.logo?
-                                    <Image style={{height:60, width:80}} source={{uri:item.logo}} />:
-                                    <Image style={{height:60, width:80}} source={require('../../../images/Icons/company_icon.png')} />
-                                }
-                            </View>
-                            <View style={styles.infoContainer}>
-                                <Text style={{fontSize:18, fontWeight:'bold'}}>{item.job_title}</Text>
-                                <Text style={{fontSize:16}}>{item.company}</Text>
-                                <View style={{flexDirection:'row'}}>
-                                    <Text>{item.city}</Text> 
-                                    <View style={{borderLeftWidth:2, borderColor:'gray', height:13, marginTop:4, marginLeft:5}}></View>
-                                    <Text style={{marginLeft:5, color:"#306EFF"}}>{item.published_date}</Text>
+                {
+                    isLoading?
+                    <View><Spinner color="blue" /></View>
+                    :
+                    <View>
+                        <FlatList 
+                            data={all_posted_jobs}
+                            renderItem = {({item})=>(
+                                <View style={styles.jobListContainer}>
+                                    <View style={styles.logoContainer}>
+                                        {
+                                            item.logo?
+                                            <Image style={{height:60, width:80}} source={{uri:item.logo}} />:
+                                            <Image style={{height:60, width:80}} source={require('../../../images/Icons/company_icon.png')} />
+                                        }
+                                    </View>
+                                    <View style={styles.infoContainer}>
+                                        <Text style={{fontSize:18, fontWeight:'bold'}}>{item.job_title}</Text>
+                                        <Text style={{fontSize:16}}>{item.company}</Text>
+                                        <View style={{flexDirection:'row'}}>
+                                            <Text>{item.city}</Text> 
+                                            <View style={{borderLeftWidth:2, borderColor:'gray', height:13, marginTop:4, marginLeft:5}}></View>
+                                            <Text style={{marginLeft:5, color:"#306EFF"}}>{item.published_date}</Text>
+                                        </View>
+                                    </View>
                                 </View>
-                            </View>
-                        </View>
-                    )}
-                    keyExtractor={item => item.id}
-                />
-                {/* <View style={{paddingHorizontal:20, marginTop:30}}>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="First name"
-                        onChangeText={(first_name) => this.setState({first_name})}
-                        value={this.state.first_name}
-                        autoFocus = {true}
-                        returnKeyType = { "next" }
-                        onSubmitEditing={() => {
-                            this.focusNextField('two'); 
-                        }}
-                        blurOnSubmit={false}
-                    />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Last name"
-                        onChangeText={(last_name) => this.setState({last_name})}
-                        value={this.state.last_name}
-                        returnKeyType = { "next" }
-                        ref={(input) => { this.InputFocus = input; }}
-                        onSubmitEditing={() => { this.thirdTextInput.focus(); }}
-                        blurOnSubmit={false}
-                    />
-                     <TextInput
-                        style={styles.textInput}
-                        placeholder="Email"
-                        onChangeText={(email) => this.setState({email})}
-                        value={this.state.email}
-                        returnKeyType = { "next" }
-                        ref={(input) => { this.thirdTextInput = input; }}
-                        onSubmitEditing={() => { this.fourthTextInput.focus(); }}
-                        blurOnSubmit={false}
-                    />
-                     <TextInput
-                        style={styles.textInput}
-                        placeholder="Country"
-                        onChangeText={(country) => this.setState({country})}
-                        value={this.state.country}
-                        returnKeyType = { "next" }
-                        ref={(input) => { this.fourthTextInput = input; }}
-                        onSubmitEditing={() => { this.fifthTextInput.focus(); }}
-                        blurOnSubmit={false}
-                    />
-                     <TextInput
-                        style={styles.textInput}
-                        placeholder="City"
-                        onChangeText={(city) => this.setState({city})}
-                        value={this.state.city}
-                        ref={(input) => { this.fifthTextInput = input; }}
-                    />
-                </View> */}
+                            )}
+                            keyExtractor={item => item.id}
+                        />
+                    </View>
+                }
+                
             </View>
         );
     }
 }
 
-export default HomeScreen;
+const mapStateToProps = (state) => {
+    return{
+        all_posted_jobs:state.Home.all_posted_jobs,
+        isLoading:state.Home.isLoading,
+    }
+}
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        getAllJobs:()=> dispatch(HomeAction.getAllJobs())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

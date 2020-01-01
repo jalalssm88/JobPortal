@@ -37,7 +37,7 @@ function Reducer (state = INITIAL_STATE, action){
                 ...state, loginLoader:false
             }
         case AuthActions.VERIFY_CODE_SUCCESS:
-            return { ...state, currentUser:action.payload }
+            return { ...state, currentUser:action.payload, loginLoader:false }
         default:
             return{
                 ...state

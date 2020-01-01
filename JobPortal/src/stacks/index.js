@@ -6,7 +6,8 @@ import AuthStack from './Auth/AuthStack';
 import TabsStack1 from './Company/TabsStack1';
 import TabsStack2 from './Student/TabsStack2';
 import { JPHeader } from '../components/'
-import ProfileStack from './Student/ProfileStack'
+import ProfileStack from './Student/ProfileStack';
+import DashboardStack from './Company/DashboardStack';
 
 
 //Main Stack
@@ -19,6 +20,7 @@ const MainStack = createStackNavigator({
         header: <JPHeader bodyText={<View><Text style={{color:'white', fontWeight:'bold', fontSize:18}}>Jop Portal App</Text></View>} />
     }},
     ...ProfileStack,
+    ...DashboardStack,
 
 
 }, {

@@ -5,6 +5,7 @@ import LoginScreen from './Auth/login';
 import SettingsScreen from './Company/Settings';
 import ProfileScreen from './Student/Profile/';
 import MyjobsScreen from './Student/MyJobs/';
+import PostJobScreen from './Company/Dashboard/JobPost/postJob';
 
 export{
     SignupScreen,
@@ -13,5 +14,6 @@ export{
     DashboardScreen,
     SettingsScreen,
     ProfileScreen,
-    MyjobsScreen
+    MyjobsScreen,
+    PostJobScreen
 }

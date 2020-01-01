@@ -9,6 +9,7 @@ const Experience = require('./api/routes/ProfileRoute/userExperience');
 const Education = require('./api/routes/ProfileRoute/userEducation');
 const Skills = require('./api/routes/ProfileRoute/userSkills');
 const Language = require('./api/routes/ProfileRoute/userLanguage');
+const PostJob = require('./api/routes/DashboardRoute/postJob')
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +32,8 @@ app.use('/experience', Experience);
 app.use('/education', Education);
 app.use('/skills', Skills);
 app.use('/language', Language)
+app.use('/jobs', PostJob)
+
 
 
 
