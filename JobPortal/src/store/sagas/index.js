@@ -2,7 +2,7 @@ import { all, takeEvery } from 'redux-saga/effects';
 
 import { AuthActions, ProfileActions } from '../actions/';
 import { createUser, loginUser } from './Auth';
-import { addExperience, getExperience, addEducation, getEducation} from './ProfileSaga'
+import { addExperience, getExperience, addEducation, getEducation, addSkills, getSkills, addLanguage, getLanguage} from './ProfileSaga'
 
 export function* rootSaga() {
     yield all([
@@ -16,7 +16,10 @@ export function* rootSaga() {
         takeEvery(ProfileActions.ADD_EDUCATION, addEducation),
         takeEvery(ProfileActions.GET_EDUCATION, getEducation),
 
+        takeEvery(ProfileActions.ADD_SKILLS, addSkills),
+        takeEvery(ProfileActions.GET_SKILLS, getSkills),
 
-
+        takeEvery(ProfileActions.ADD_LANGUAGE, addLanguage),
+        takeEvery(ProfileActions.GET_LANGUAGE, getLanguage),
     ]);
 };

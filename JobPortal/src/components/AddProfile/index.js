@@ -24,7 +24,11 @@ class AddProfileScreen extends Component {
             start_date:'',
             end_date:'',
             date:'',
-            is_working:false
+            is_working:false,
+            skills:'',
+            skill_experience:'',
+            language:'',
+            language_level:''
         }
     }
 
@@ -36,11 +40,15 @@ class AddProfileScreen extends Component {
 
     add_profiles = (type)=> {
         console.log('type', type)
-        const {job_title, company,start_date, end_date, is_working, institude, degree_title, field} = this.state
+        const {job_title, company,start_date, end_date, is_working, institude, degree_title, field, skills, skill_experience, language, language_level} = this.state
         if(type == "Add Experience"){
            this.props.addExperience({job_title:job_title, company:company, is_working:is_working, start_date:start_date, end_date:end_date})
         }else if(type == "Add Education"){
             this.props.addEducation({institude:institude, degree_title:degree_title, field:field, end_date:end_date})
+        }else if(type == "Add Skills"){
+            this.props.addSkills({skill:skills, skill_experience:skill_experience})
+        }else if(type == "Add Language"){
+            this.props.addLanguage({language:language, language_level:language_level})
         }
     }
    
@@ -199,6 +207,39 @@ class AddProfileScreen extends Component {
                         </View>:
                         <View></View>
                     }
+                    {
+                        params == "Add Skills"?
+                        <View>
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Add Skill"
+                                onChangeText={(skills) => this.setState({skills})}
+                                value={this.state.skills}
+                            />
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Experience Year"
+                                onChangeText={(skill_experience) => this.setState({skill_experience})}
+                                value={this.state.skill_experience}
+                            />
+                        </View>:
+                        params == "Add Language"?
+                        <View>
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Add Language"
+                                onChangeText={(language) => this.setState({language})}
+                                value={this.state.language}
+                            />
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="level"
+                                onChangeText={(language_level) => this.setState({language_level})}
+                                value={this.state.language_level}
+                            />
+                        </View>:
+                        <View></View>
+                    }
                     
                 </View>
                 <JPButton onPress={()=>{
@@ -218,6 +259,8 @@ const mapDispatchToProps = (dispatch) =>{
     return {
         addExperience:(payload)=> dispatch(ProfileActions.addExperience(payload)),
         addEducation:(payload)=> dispatch(ProfileActions.addEducation(payload)),
+        addSkills:(payload)=> dispatch(ProfileActions.addSkills(payload)),
+        addLanguage:(payload)=> dispatch(ProfileActions.addLanguage(payload))
     }
 }
 

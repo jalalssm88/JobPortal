@@ -29,5 +29,15 @@ export default StyleSheet.create({
         height:70,
         paddingHorizontal:10
 
-    }
+    },
+    textInput:{
+        height:40,
+        borderBottomWidth:1,
+        borderColor:'#2B65EC',
+        paddingLeft:8,
+        fontSize:16,
+        marginBottom:20,
+        width:"100%"
+    },
+
 })

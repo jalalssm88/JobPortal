@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, TextInput } from 'react-native';
 import styles from './Style';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -31,9 +31,23 @@ class HomeScreen extends Component {
                     city:"lahore",
                     published_date:"Dec 23, 2019"
                 }
-            ]
+            ],
+            first_name:'',
+            last_name:'',
+            email:'',
+            city:'',
+            country:''
         }
     }
+
+    focusNextField = (nextInput) => {
+        this.InputFocus[nextInput].focus();
+    }
+    InputFocus = (focusField) => {
+        return focusField
+    }
+
+
     render(){
         return(
             <View>
@@ -61,6 +75,57 @@ class HomeScreen extends Component {
                     )}
                     keyExtractor={item => item.id}
                 />
+                {/* <View style={{paddingHorizontal:20, marginTop:30}}>
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="First name"
+                        onChangeText={(first_name) => this.setState({first_name})}
+                        value={this.state.first_name}
+                        autoFocus = {true}
+                        returnKeyType = { "next" }
+                        onSubmitEditing={() => {
+                            this.focusNextField('two'); 
+                        }}
+                        blurOnSubmit={false}
+                    />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Last name"
+                        onChangeText={(last_name) => this.setState({last_name})}
+                        value={this.state.last_name}
+                        returnKeyType = { "next" }
+                        ref={(input) => { this.InputFocus = input; }}
+                        onSubmitEditing={() => { this.thirdTextInput.focus(); }}
+                        blurOnSubmit={false}
+                    />
+                     <TextInput
+                        style={styles.textInput}
+                        placeholder="Email"
+                        onChangeText={(email) => this.setState({email})}
+                        value={this.state.email}
+                        returnKeyType = { "next" }
+                        ref={(input) => { this.thirdTextInput = input; }}
+                        onSubmitEditing={() => { this.fourthTextInput.focus(); }}
+                        blurOnSubmit={false}
+                    />
+                     <TextInput
+                        style={styles.textInput}
+                        placeholder="Country"
+                        onChangeText={(country) => this.setState({country})}
+                        value={this.state.country}
+                        returnKeyType = { "next" }
+                        ref={(input) => { this.fourthTextInput = input; }}
+                        onSubmitEditing={() => { this.fifthTextInput.focus(); }}
+                        blurOnSubmit={false}
+                    />
+                     <TextInput
+                        style={styles.textInput}
+                        placeholder="City"
+                        onChangeText={(city) => this.setState({city})}
+                        value={this.state.city}
+                        ref={(input) => { this.fifthTextInput = input; }}
+                    />
+                </View> */}
             </View>
         );
     }
