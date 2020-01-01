@@ -4,7 +4,7 @@ const router = express.Router();
 const Experience = require('../../models/ProfileModel/userExperience');
 router.post('/add_experience', (req, res, next)=>{
     const new_experience = new Experience({
-        user_id:req.headers.user_id,
+        user:req.headers.user_id,
         job_title:req.body.job_title,
         company:req.body.company,
         is_working:req.body.is_working,
@@ -27,15 +27,14 @@ router.post('/add_experience', (req, res, next)=>{
 
 router.get('/get_experience/:id', (req, res, next)=>{
     const id = req.params.id;
-    console.log('user id in work place', id)
+    console.log('user id in get experience', id)
     var query ={
-        "user_id":id
+        "user":id
     }
     Experience.find (query) 
-    .select('_id user_id job_title company is_working start_date end_date')
+    .select('_id user job_title company is_working start_date end_date')
     .exec()
     .then(doc => {
-        console.log('work place ====', doc)
         doc.reverse();
         if(doc){
             res.status(200).json(doc)

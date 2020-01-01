@@ -12,7 +12,7 @@ const ExperienceSchema = new Schema({
         type:String,
     },
     is_working:{
-        type:String,
+        type:Boolean,
     },
     start_date:{
         type:String,

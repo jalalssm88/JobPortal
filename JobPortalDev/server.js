@@ -7,6 +7,8 @@ const app = express();
 const User = require('./api/routes/users/user');
 const Experience = require('./api/routes/ProfileRoute/userExperience');
 const Education = require('./api/routes/ProfileRoute/userEducation');
+const Skills = require('./api/routes/ProfileRoute/userSkills');
+const Language = require('./api/routes/ProfileRoute/userLanguage');
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +29,8 @@ mongoose.connect('mongodb+srv://jalal:123@socialapp-wbe7k.mongodb.net/test?retry
 app.use('/user', User);
 app.use('/experience', Experience);
 app.use('/education', Education);
+app.use('/skills', Skills);
+app.use('/language', Language)
 
 
 

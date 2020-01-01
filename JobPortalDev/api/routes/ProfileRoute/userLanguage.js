@@ -1,17 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const Education = require('../../models/ProfileModel/userEducation');
-router.post('/add_education', (req, res, next)=>{
-    console.log('education', req.body)
-    const new_education = new Education({
+const Language = require('../../models/ProfileModel/userLanguage');
+router.post('/add_language', (req, res, next)=>{
+    const new_language = new Language({
         user:req.headers.user_id,
-        institude:req.body.institude,
-        degree_title:req.body.degree_title,
-        field:req.body.field,
-        end_date:req.body.end_date,
+        language:req.body.language,
+        language_level:req.body.language_level,
     })
-    new_education.save()
+    new_language.save()
     .then(picture => {
         res.status(200).json({
             status:"success",
@@ -25,14 +22,14 @@ router.post('/add_education', (req, res, next)=>{
     })
 });
 
-router.get('/get_education/:id', (req, res, next)=>{
+router.get('/get_language/:id', (req, res, next)=>{
     const id = req.params.id;
-    console.log('user id in work place', id)
+    console.log('user id in get language', id)
     var query ={
         "user":id
     }
-    Education.find (query) 
-    .select('_id user institude degree_title field end_date')
+    Language.find (query) 
+    .select('_id user language language_level')
     .exec()
     .then(doc => {
         doc.reverse();
