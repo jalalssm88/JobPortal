@@ -40,4 +40,20 @@ export default StyleSheet.create({
         width:"100%"
     },
 
+    toggleButtonContainer:{
+        marginTop:5,
+        marginLeft:10,
+        width: 40,
+        height: 18,
+        borderRadius: 25,
+        backgroundColor: '#ccc',
+        padding: 5,
+    },
+    toggleButtonCircle:{
+        width: 12,
+        height: 12,
+        borderRadius: 50,
+        backgroundColor: '#4EF892',
+    },
+
 })

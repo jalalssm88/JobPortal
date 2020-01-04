@@ -5,7 +5,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import {connect} from 'react-redux';
 import { Spinner } from 'native-base';
 import { HomeAction } from '../../../store/actions';
-
+import SwitchToggle from 'react-native-switch-toggle';
+import {Dropdown} from '../../../components/';
 
 class HomeScreen extends Component {
     constructor(props){
@@ -39,7 +40,8 @@ class HomeScreen extends Component {
             last_name:'',
             email:'',
             city:'',
-            country:''
+            country:'',
+            checkbox:false,
         }
         this.getAllJobs();
     }
@@ -52,6 +54,12 @@ class HomeScreen extends Component {
     }
     getAllJobs = ()=>{
         this.props.getAllJobs()
+    }
+
+    toggleHandler =()=>{
+        this.setState({
+            checkbox:!this.state.checkbox
+        })
     }
 
     render(){
@@ -87,6 +95,19 @@ class HomeScreen extends Component {
                             )}
                             keyExtractor={item => item.id}
                         />
+
+                            <SwitchToggle
+                                containerStyle={styles.toggleButtonContainer}
+                                circleStyle={styles.toggleButtonCircle}
+                                switchOn={this.state.checkbox}
+                                backgroundColorOn='#4B5767'
+                                circleColorOn='#4EF892'
+                                backgroundColorOff='#2326320C'
+                                circleColorOff='#4B5767'
+                                onPress={this.toggleHandler}
+                            />
+                        <Dropdown arrayData={[{ name: "karachi", value: "Karachi" }, { name: "lahore", value: "Lahore" }]} selectedValue="" title="Select City" getValue={this.props.getValue} />
+
                     </View>
                 }
                 
